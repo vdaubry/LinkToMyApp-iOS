@@ -25,6 +25,7 @@
 + (LinkToMyAppManager *)sharedManager;
 
 - (void) setupWithAppId:(NSString*)appId;
-- (void) userSuscribedToAppId:(NSString*)appId;
+- (void) userSuscribedToApp;
+- (void) userPurchasedInApp;
 
 @end

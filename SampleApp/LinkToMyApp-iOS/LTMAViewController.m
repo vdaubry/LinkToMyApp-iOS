@@ -7,6 +7,7 @@
 //
 
 #import "LTMAViewController.h"
+#import "LinkToMyApp.h"
 
 @interface LTMAViewController ()
 
@@ -22,7 +23,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -32,6 +33,17 @@
     } else {
         return YES;
     }
+}
+
+#pragma mark - User actions
+
+- (IBAction) userDidCreateAccount:(id)sender {
+    [[LinkToMyAppManager sharedManager] userSuscribedToApp];
+}
+
+
+- (IBAction) userDidBuySomething:(id)sender {
+    [[LinkToMyAppManager sharedManager] userPurchasedInApp];
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define APP_INSTALLED_USER_DEFAULT_KEY  @"LINK_TO_MY_APP_INSTALLED_USER_DEFAULT_KEY"
-#define APP_LINK_ID_KEY  @"APP_LINK_ID_KEY"
+#define LINK_CLICKED_ID_KEY  @"LINK_CLICKED_ID_KEY"
 
 typedef void (^OnServiceSuccesBlock)(NSString* responseStr);
 

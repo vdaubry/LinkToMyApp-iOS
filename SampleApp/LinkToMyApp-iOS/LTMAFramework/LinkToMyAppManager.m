@@ -50,12 +50,10 @@
     [request setHTTPBody: myRequestData];
     
     [linkToMyAppService runConnectionWithRequest:request serviceBlock:^(NSString *responseStr) {
-        [[NSUserDefaults standardUserDefaults] setObject:responseStr forKey:APP_LINK_ID_KEY];
+        [[NSUserDefaults standardUserDefaults] setObject:responseStr forKey:LINK_CLICKED_ID_KEY];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:APP_INSTALLED_USER_DEFAULT_KEY];
     }];
 }
-
-
 
 #pragma mark - Public methods
 
@@ -69,8 +67,34 @@
     }
 }
 
-- (void) userSuscribedToAppId:(NSString*)appId {
+- (void) userSuscribedToApp {
+    NSString *app_link = [[NSUserDefaults standardUserDefaults] objectForKey:LINK_CLICKED_ID_KEY];
     
+    NSString *myRequestString = [NSString stringWithFormat:@"link_clicked_id=%@", app_link];
+    NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [self serverUrlWithPath:@"api/user_suscribed/"]];
+    [request setHTTPMethod: @"POST"];
+    [request setHTTPBody: myRequestData];
+    
+    [linkToMyAppService runConnectionWithRequest:request serviceBlock:^(NSString *responseStr) {
+        //
+    }];
+    
+        
+}
+
+- (void) userPurchasedInApp {
+    NSString *app_link = [[NSUserDefaults standardUserDefaults] objectForKey:LINK_CLICKED_ID_KEY];
+    
+    NSString *myRequestString = [NSString stringWithFormat:@"link_clicked_id=%@", app_link];
+    NSData *myRequestData = [NSData dataWithBytes: [myRequestString UTF8String] length: [myRequestString length]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [self serverUrlWithPath:@"api/user_purchased/"]];
+    [request setHTTPMethod: @"POST"];
+    [request setHTTPBody: myRequestData];
+    
+    [linkToMyAppService runConnectionWithRequest:request serviceBlock:^(NSString *responseStr) {
+        //
+    }];
 }
 
 
